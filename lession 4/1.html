@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+  <script>
+    "use strict";
+
+    //es5
+    function ProductES5(name, price) {
+      this.name = name;
+      this.price = price;
+    }
+
+    ProductES5.prototype.make25Discount = function () {
+      this.price -= this.price * 0.25;
+    }
+
+    // Здесь пишем решение, данный комментарий необходимо стереть.
+    const product1 = new ProductES5('Молоко Эко', 200);
+    console.log(`Создали новый товар: "${product1.name}", стоимость: ${product1.price}`);
+    product1.make25Discount(); // провели переоценку
+    console.log(`После переоценки на -25%, товара: "${product1.name}"", новая цена: ${product1.price}`);
+
+    class ProductES6 {
+      constructor(name, price) {
+        this.name = name;
+        this.price = price;
+      }
+      makeDiscount(procent) {
+        this.price -= this.price * procent / 100;
+      }
+    }
+
+    const product2 = new ProductES6('Булка с маком', 100);
+    console.log(`Создали новый товар: "${product2.name}", стоимость: ${product2.price}`);
+    product2.makeDiscount(25); // провели переоценку через входной параметр,
+    console.log(`После переоценки на -25%, товара: "${product2.name}"", новая цена: ${product2.price}`);
+
+    const product3 = new ProductES6('Масло', 250);
+    console.log(`Создали новый товар: "${product3.name}", стоимость: ${product3.price}`);
+    product3.makeDiscount(-25); // провели переоценку подняли стоимость товар
+    console.log(`После переоценки на +25%, товара: "${product3.name}"", новая цена: ${product3.price}`);
+
+  </script>
+</body>
+
+</html>
