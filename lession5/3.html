@@ -81,13 +81,23 @@
     которому был совершен клик.
     Необходимо использовать делегирование.
     */
+    document.querySelector('body').addEventListener('click', (event) => {
+      if (event.target.classList.contains('super_element')) {
+        console.log(`Класс "super_element" присутствует в элементе ${event.target.tagName.toLowerCase()}`);
+      } else {
+        console.log(`Класс "super_element" не присутствует в элементе ${event.target.tagName.toLowerCase()}`);
+      }
+    });
 
- 
+
+
     /*
     4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
     "Вы навели на textarea."
      */
-
+    document.querySelector('textarea').addEventListener('mouseover', () => {
+      console.log(`Вы навели на textarea.`);
+    });
 
     /*
     5. Необходимо повесить событие клика на тег ul. В обработчике события в
@@ -96,18 +106,36 @@
     Если клик был не по кнопке, то ничего выводить не нужно.
     Необходимо использовать делегирование.
      */
+    function eventClick(event) {
+      if (event.target.tagName !== "BUTTON") {
+        return;
+      }
+      console.log(`${event.target.innerText}`);
 
+    };
+
+    const ulEls = document.querySelectorAll('ul');
+    for (const ulEl of ulEls) {
+      ulEl.addEventListener('click', eventClick);
+    }
 
     /*
     6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только
     потом выводится текст из 3 задания, если мы кликаем по кнопкам в ul?
     Ответ необходимо написать здесь же, под этим комментарием, своими словами.
     */
+    /* 
+    Целевое событие раньще выполнятся чем событие наступающие на всплытии 
 
 
     /*
     7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
      */
+    const liEls = document.querySelectorAll('li:nth-child(2n)');
+    for (const liEl of liEls) {
+      liEl.style.background = "blue";
+    }
+
 
   </script>
 </body>
